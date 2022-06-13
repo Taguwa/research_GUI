@@ -20,8 +20,9 @@
 
 using namespace std;
 
-void Q_Learning_Platform(int epsode , vector<vector<int>> map){
+void Q_Learning_Platform(int epsode , Grid<int32> board){
     cout << "Q soltution running.. | epsode : " << epsode << endl;
+    
 }
 
 #endif /* Q_solution_h */

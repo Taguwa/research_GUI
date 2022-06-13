@@ -37,7 +37,7 @@ void Main()
     
     //void main()
     row pos = {1,1};
-    int size = 20;
+    int size = 25;
     String size_of_maze = U"maze size : {} * {} "_fmt(Format(size),Format(size));
     String state = U"status : Searching...";
     String Location = U"pos : ( {} , {} ) "_fmt(Format(pos.y),Format(pos.x));
@@ -79,7 +79,7 @@ void Main()
         
         Location = U"Location : ( {} , {} ) "_fmt(Format(pos.y),Format(pos.x));
         
-        if(pos.y == 13 && pos.x == 12) state = U"Complete";
+        if(pos.y == size-2 && pos.x == size-2) state = U"Complete";
         
         if(SimpleGUI::Button(U"BFS next steps", Vec2(760, 150))){ grid = BFS_nextsteps(grid,&pos); }
         
