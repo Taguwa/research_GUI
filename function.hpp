@@ -85,6 +85,7 @@ Grid<int32> random_question(int size){
 
     return temp;
 }
+
 //CUI用出力
 void print(Grid<int32> a){
     for(int i = 0 ; i < 11 ; i++){

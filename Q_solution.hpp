@@ -22,7 +22,7 @@ using namespace std;
 
 void Q_Learning_Platform(int epsode , Grid<int32> board){
     cout << "Q soltution running.. | epsode : " << epsode << endl;
-    
+    Grid<int32> template_Q_table;
 }
 
 #endif /* Q_solution_h */
