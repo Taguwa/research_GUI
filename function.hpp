@@ -10,14 +10,20 @@
 
 #include <iostream>
 #include <random>
+#include <queue>
 
 using namespace std;
 
+//座標系
 typedef struct row{
     int x;
     int y;
 };
 
+//文字列（現在の状態）
+String state;
+
+//自動生成
 Grid<int32> random_question(int size){
     Grid<int32> temp(size , size , 0);
     //外枠
@@ -82,7 +88,7 @@ Grid<int32> random_question(int size){
     }
     temp[1][1]=2;
     temp[size-2][size-2]=3;
-
+    
     return temp;
 }
 
@@ -106,7 +112,7 @@ void print(Grid<int32> a){
     }
 }
 
-
+//深さ優先
 Grid<int32> BFS_nextsteps(Grid<int32> a, row* pos){
     if(a[pos->y+1][pos->x] == 0){
         pos->y++;
@@ -143,38 +149,27 @@ Grid<int32> BFS_nextsteps(Grid<int32> a, row* pos){
     return a;
 }
 
-
-
+//深さ優先
+queue<row> que;
 Grid<int32> DFS_nextsteps(Grid<int32> a, row* pos){
+    
     if(a[pos->y+1][pos->x] == 0){
-        pos->y++;
+        que.push({pos->x,pos->y+1});
     }
-    else if(a[pos->y-1][pos->x] == 0){
-        pos->y--;
+    if(a[pos->y-1][pos->x] == 0){
+        que.push({pos->x,pos->y-1});
     }
-    else if(a[pos->y][pos->x+1] == 0){
-        pos->x++;
+    if(a[pos->y][pos->x+1] == 0){
+        que.push({pos->x+1,pos->y});
     }
-    else if(a[pos->y][pos->x-1] == 0){
-        pos->x--;
+    if(a[pos->y][pos->x-1] == 0){
+        que.push({pos->x-1,pos->y});
     }
     
-    else if(a[pos->y+1][pos->x] == 1){
-        a[pos->y][pos->x] = 99;
-        pos->y++;
-    }
-    else if(a[pos->y-1][pos->x] == 1){
-        a[pos->y][pos->x] = 99;
-        pos->y--;
-    }
-    else if(a[pos->y][pos->x+1] == 1){
-        a[pos->y][pos->x] = 99;
-        pos->x++;
-    }
-    else if(a[pos->y][pos->x-1] == 1){
-        a[pos->y][pos->x] = 99;
-        pos->x--;
-    }
+    row front = que.front();
+    pos->x = front.x;
+    pos->y = front.y;
+    que.pop();
     
     a[pos->y][pos->x] = 1;
     cout << pos->y << pos->x <<endl;

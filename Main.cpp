@@ -37,11 +37,12 @@ void Main()
     
     //void main()
     row pos = {1,1};
-    int size = 17;
+    int size = 21;
+    state = U"R : Searching...";
     String size_of_maze = U"maze size : {} * {} "_fmt(Format(size),Format(size));
-    String state = U"status : Searching...";
     String Location = U"pos : ( {} , {} ) "_fmt(Format(pos.y),Format(pos.x));
    
+    //壁9（黒） スタート2 ゴール3 何もなし0（白） 探索済1（緑） エージェント別変数（水色）
     Grid<int32> grid =
        {{9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
         {9,2,9,0,0,0,0,0,0,0,0,0,9,0,9},
@@ -69,17 +70,12 @@ void Main()
         //
         //
         
-        //settings § fonts
-        font(size_of_maze).draw(760, 450, ColorF(0.2));
-        font(state).draw(760, 50, ColorF(0.2));
-        font(Location).draw(760, 100, ColorF(0.2));
-        Cursor::RequestStyle(CursorStyle::Hand);
         
         //ui bottom
         
         Location = U"Location : ( {} , {} ) "_fmt(Format(pos.y),Format(pos.x));
         
-        if(pos.y == size - 2 && pos.x == size - 2) state = U"Complete";
+        if(pos.y == size - 2 && pos.x == size - 2) state =  U"R : Complete";
         
         if(SimpleGUI::Button(U"BFS next steps", Vec2(760, 150))){ grid = BFS_nextsteps(grid,&pos); }
         
@@ -89,7 +85,19 @@ void Main()
         
         if(SimpleGUI::Button(U"random solution", Vec2(760, 300))){ grid = random_question(size); }
         
-        if(SimpleGUI::Button(U"test Q_SOLUTION", Vec2(760, 400))){ }
+        if(SimpleGUI::Button(U"test Q_SOLUTION", Vec2(760, 400))){ Q_Learning_Platform(10, grid);
+            state = U"R : Q ";
+        }
+        
+        //settings § fonts
+        
+        font(size_of_maze).draw(760, 450, ColorF(0.2));
+        
+        font(state).draw(760, 50, ColorF(0.2));
+        
+        font(Location).draw(760, 100, ColorF(0.2));
+        
+        Cursor::RequestStyle(CursorStyle::Hand);
         
         //
         //
