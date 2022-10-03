@@ -27,7 +27,6 @@ typedef struct return_data{
 }return_data;
 
 
-
 void Q_Learning_Platform(int epsode , Grid<int32> board ,int size){
     
     // 何回ゴールするか
@@ -41,7 +40,6 @@ void Q_Learning_Platform(int epsode , Grid<int32> board ,int size){
     //Qtable
     vector<vector<int>> Q_table(size , vector<int>(size));
     
-
     
     
     //epsode回実装
@@ -52,5 +50,16 @@ void Q_Learning_Platform(int epsode , Grid<int32> board ,int size){
 }
 
 //処理用関数
+
+//最良一番いいのを出す
+int select_best_action(vector<vector<int>> Q_table, row pos){
+    return 0;
+}
+
+//行動決定関数 ... 一定の確率で、ベストでない動きをする
+void select_action(){
+    
+}
+
 
 #endif /* Q_solution_h */

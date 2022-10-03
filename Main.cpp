@@ -128,7 +128,7 @@ void Main()
         
         if(SimpleGUI::Button(U"test Q_SOLUTION", Vec2(760, 400))){
             
-            Q_Learning_Platform(10, grid);
+            Q_Learning_Platform(10, grid, size);
             state = U"R : Q ";
         }
         
