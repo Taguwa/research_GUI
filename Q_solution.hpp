@@ -53,6 +53,8 @@ void Q_Learning_Platform(int epsode , Grid<int32> board ,int size){
 
 //最良一番いいのを出す
 int select_best_action(vector<vector<int>> Q_table, row pos){
+    
+    
     return 0;
 }
 

@@ -114,14 +114,14 @@ void print(Grid<int32> a){
 
 //深さ優先
 Grid<int32> BFS_nextsteps(Grid<int32> a, row* pos){
-    if(a[pos->y+1][pos->x] == 0){
-        pos->y++;
+    if(a[pos->y][pos->x+1] == 0){
+        pos->x++;
     }
     else if(a[pos->y-1][pos->x] == 0){
         pos->y--;
     }
-    else if(a[pos->y][pos->x+1] == 0){
-        pos->x++;
+    else if(a[pos->y+1][pos->x] == 0){
+        pos->y++;
     }
     else if(a[pos->y][pos->x-1] == 0){
         pos->x--;
@@ -152,6 +152,18 @@ Grid<int32> BFS_nextsteps(Grid<int32> a, row* pos){
 //幅優先
 queue<row> que;
 Grid<int32> DFS_nextsteps(Grid<int32> a, row* pos){
+    if(a[pos->y+1][pos->x] == 3){
+        que.push({pos->x,pos->y+1});
+    }
+    if(a[pos->y-1][pos->x] == 3){
+        que.push({pos->x,pos->y-1});
+    }
+    if(a[pos->y][pos->x+1] == 3){
+        que.push({pos->x+1,pos->y});
+    }
+    if(a[pos->y][pos->x-1] == 3){
+        que.push({pos->x-1,pos->y});
+    }
     
     if(a[pos->y+1][pos->x] == 0){
         que.push({pos->x,pos->y+1});
